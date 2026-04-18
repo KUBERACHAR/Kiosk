@@ -1,120 +1,125 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { useEffect, useState } from 'react'
 import './App.css'
 
+const featureCards = [
+  {
+    title: 'AI-Powered',
+    subtitle: 'Neural Matching',
+    icon: 'brain',
+    modifier: 'card-top',
+  },
+  {
+    title: '98% Accuracy',
+    subtitle: 'Skill Alignment',
+    icon: 'chart',
+    modifier: 'card-middle',
+  },
+  {
+    title: 'Instant Results',
+    subtitle: 'Career Roadmap',
+    icon: 'rocket',
+    modifier: 'card-bottom',
+  },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  const isDark = theme === 'dark'
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <main className="landing-shell">
+      <div className="ambient ambient-left" aria-hidden="true" />
+      <div className="ambient ambient-right" aria-hidden="true" />
+      <div className="noise-layer" aria-hidden="true" />
+
+      <header className="topbar">
         <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          type="button"
+          className={`theme-toggle ${isDark ? 'is-dark' : ''}`}
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+          aria-pressed={isDark}
         >
-          Count is {count}
+          <span className="toggle-track">
+            <span className="toggle-glow" />
+            <span className="toggle-thumb">
+              <span className="sun-icon" />
+              <span className="moon-icon" />
+            </span>
+            <span className="toggle-label toggle-label-light">Light</span>
+            <span className="toggle-label toggle-label-dark">Dark</span>
+          </span>
         </button>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
+      <section className="hero-layout">
+        <div className="hero-copy">
+          <p className="eyebrow">
+            <span className="eyebrow-dot" />
+            AI CAREER INTELLIGENCE
+          </p>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <h1 className="brand-mark">MYTECHZ</h1>
+
+          <h2 className="hero-title">
+            Discover Your <em>Ideal</em> Career Path
+          </h2>
+
+          <p className="hero-description">
+            Our neural matching engine analyses your skills, year, and branch
+            to surface the career paths most aligned with your profile with
+            precision.
+          </p>
+
+          <div className="stats-row" aria-label="Platform highlights">
+            <div className="stat-item">
+              <strong>12K+</strong>
+              <span>Students Matched</span>
+            </div>
+            <div className="stat-divider" aria-hidden="true" />
+            <div className="stat-item">
+              <strong>94%</strong>
+              <span>Placement Rate</span>
+            </div>
+            <div className="stat-divider" aria-hidden="true" />
+            <div className="stat-item">
+              <strong>40+</strong>
+              <span>Career Paths</span>
+            </div>
+          </div>
+
+          <div className="hero-actions">
+            <button type="button" className="cta-button">
+              <span>Begin Analysis</span>
+              <span className="cta-arrow" aria-hidden="true">
+                &rarr;
+              </span>
+            </button>
+            <p className="hero-note">Takes about 2 minutes &bull; Free forever</p>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <aside className="feature-stack" aria-label="Platform features">
+          {featureCards.map((card) => (
+            <article
+              key={card.title}
+              className={`feature-card ${card.modifier}`}
+            >
+              <div className={`feature-icon feature-icon-${card.icon}`} />
+              <div>
+                <h3>{card.title}</h3>
+                <p>{card.subtitle}</p>
+              </div>
+            </article>
+          ))}
+        </aside>
+      </section>
+    </main>
   )
 }
 
