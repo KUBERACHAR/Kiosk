@@ -136,7 +136,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--page-bg-start);
+  /* background: var(--page-bg-start); */
+  font-size: 15px;
 }
 
 button,
